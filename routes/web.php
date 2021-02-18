@@ -50,3 +50,9 @@ Route::get('/configuracion', 'UserController@config')->name('config');
 Route::post('/user/update', 'UserController@update')->name('user.update');
 
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
+
+
+//Rutas de ImageController
+Route::get('/subir-imagen', 'ImageController@create')->name('image.create');
+Route::post('/image/save', 'ImageController@save')->name('image.save');
+
