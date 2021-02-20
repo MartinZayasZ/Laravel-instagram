@@ -57,6 +57,12 @@
                                 <span class="nickname">{{'@'.$image->user->nick}} |</span>
                                 <span class="date">{{ \FormatTime::LongTimeFilter($comment->created_at) }}</span>
                                 <p>{{ $comment->content }}</p>
+
+                                @if ( Auth::check() &&  ( $comment->user->id == Auth::user()->id || $image->user_id == Auth::user()->id ) )
+                                    <br>
+                                    <a class="btn btn-sm btn-danger" href="{{ route('comment.delete',['id' => $comment->id]) }}">Eliminar</a>
+                                @endif
+
                             </div>
                         @endforeach
 
