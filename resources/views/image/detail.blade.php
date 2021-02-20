@@ -7,7 +7,7 @@
 
             @include('includes.message')
 
-            <div class="card pub-image">
+            <div class="card pub-image pub-image-detail">
                 <div class="card-header">
                     @if( $image->user->image )
                         <div class="container-avatar">
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="image-container">
+                    <div class="image-container image-detail">
                         <img src="{{ route('image.file',['filename' => $image->image_path]) }}" alt="">
                     </div>
                     <div class="description">
@@ -30,10 +30,36 @@
                     <div class="likes">
                         <img src="{{ asset('img/hearts-gray.ico') }}" alt="heart">
                     </div>
+                    <div class="clearfix"></div>
                     <div class="comments">
-                        <a href="" class="btn btn-warning btn-sm btn-comments">
-                            Comentarios ({{ count($image->comments) }})
-                        </a>
+                        <h2> Comentarios ({{ count($image->comments) }})</h2>
+                        <hr>
+
+                        <form method="POST" action="{{ route('comment.save') }}">
+                            @csrf
+                            <input type="hidden" name="image_id" value="{{ $image->id }}">
+
+                            <p>
+                                <textarea name="content" class="form-control  @error('content') is-invalid @enderror" cols="30" rows="5"></textarea>
+                                @error('content')
+                                    <span class="invalid-feedback" role="alert"><strong>{{$message}}</strong></span>
+                                @enderror
+                            </p>
+
+                            <button type="submit" class="btn btn-success">Guardar</button>
+
+                        </form>
+
+                        <hr>
+
+                        @foreach( $image->comments as $comment )
+                            <div class="comment">
+                                <span class="nickname">{{'@'.$image->user->nick}} |</span>
+                                <span class="date">{{ \FormatTime::LongTimeFilter($comment->created_at) }}</span>
+                                <p>{{ $comment->content }}</p>
+                            </div>
+                        @endforeach
+
                     </div>
 
                 </div>
