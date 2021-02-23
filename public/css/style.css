@@ -81,7 +81,32 @@ form .avatar{
     width: 20px;
 }
 
-
 .pub-image-detail .comments{
     padding: 20px;
+}
+
+/* Profile */
+.profile-user{
+    height: 200px;
+    margin-bottom: 40px;
+}
+
+.profile-user .container-avatar{
+    width: 200px;
+    height: 200px;
+    border-radius: 900px;
+    overflow: hidden;
+    float: left;
+}
+
+.profile-user .container-avatar img{
+    width: 100%;
+    height: 100%;
+}
+
+.profile-user .user-info{
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    float:left;
 }
