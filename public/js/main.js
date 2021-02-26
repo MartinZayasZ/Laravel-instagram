@@ -43,4 +43,13 @@ window.addEventListener('load', function(){
     }
     dislike();
 
+
+    // BUSCADOR
+
+    $('#form-user-search').submit(function(e){
+        $(this).attr( 'action', url+'/personas/'+ $('#search').val() );
+        //$(this).submit();
+    });
+
+
 });

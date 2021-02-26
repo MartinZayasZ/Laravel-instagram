@@ -52,6 +52,8 @@ Route::get('/user/profile/{id}', 'UserController@profile')->name('user.profile')
 
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
 
+Route::get('/personas/{search?}', 'UserController@users')->name('user.index');
+
 
 //Rutas de ImageController
 Route::get('/subir-imagen', 'ImageController@create')->name('image.create');
